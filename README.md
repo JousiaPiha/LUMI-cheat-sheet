@@ -19,7 +19,7 @@ module use /appl/local/csc/modulefiles; module load pytorch
 
 If you are using software that will download models from Hugging Face, you can set a location for them. (By default they are downloaded in the user's home folder, the quota of which is only 20GB.)
 ```
-export HF_HOME=/scratch/project_462000558/hf_cache
+export HF_HOME=/scratch/$PROJECT_FOLDER/hf_cache
 ```
 If you accidentally fill up your home folder, you can `rm -rf ~/.local`
 
