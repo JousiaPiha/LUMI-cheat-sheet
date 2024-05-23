@@ -36,7 +36,7 @@ module use /appl/local/csc/modulefiles/   #Modules installed by CSC
 module purge   #Unload previously loaded modules
 module load LUMI   #To start with a clean slate
 module load pytorch nano  #Load basic AI/ML tools and Nano text editor and anything you like.
-export HF_HOME=/scratch/<PROJECT_FOLDER>/hf_cache   #Set a cache folder for models downloaded from Hugging Face
+export HF_HOME=/scratch/$PROJECT_FOLDER/hf_cache   #Set a cache folder for models downloaded from Hugging Face
 
 #The following will start an interactive computer node with two GPUs for two hours.
 srun \
@@ -49,7 +49,7 @@ srun \
     --pty \
     bash
 ```
-### About jobs on LUMI
+### Jobs on LUMI
 To get your job id, use:
 ```
 squeue -u $USER
@@ -58,6 +58,7 @@ To get an additional compute node terminal, you can open a login node and use:
 ```
 srun --jobid $JOBID --overlap --pty bash
 ```
+Using this new terminal, you can, for example, get info about the job running on that node, like the GPU usage with `rocm-smi`
 To cancel a job, use:
 ```
 scancel $JOBID
@@ -67,3 +68,8 @@ You may not use Conda on LUMI. I usually install Python programs in a virtual en
 ```
 python -m venv .venv --system-site-packages
 ```
+You may need to add the packages in the virtual environment to PYTHONPATH with
+```bash
+export PYTHONPATH="/projappl/$PROJECT_FOLDER/$USER/$PROGRAM/.venv/lib/python3.10/site-packages/"
+```
+### Singularity containers
