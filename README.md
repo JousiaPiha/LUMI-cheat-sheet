@@ -62,3 +62,8 @@ To cancel a job, use:
 ```
 scancel $JOBID
 ```
+### Python virtual environments
+You may not use Conda on LUMI. I usually install Python programs in a virtual environment in `/projappl/$PROJECT_FOLDER/$USER` with
+```
+python -m venv .venv --system-site-packages
+```
