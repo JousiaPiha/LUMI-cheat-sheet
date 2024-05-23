@@ -17,11 +17,6 @@ Load basic AI/ML tools
 module use /appl/local/csc/modulefiles; module load pytorch
 ```
 
-Nano is not loaded on compute nodes by default. If you are like me and like it, you can load it with:
-```
-module load nano
-```
-
 If you are using software that will download models from Hugging Face, you can set a location for them. (By default they are downloaded in the user's home folder, the quota of which is only 20GB.)
 ```
 export HF_HOME=/scratch/project_462000558/hf_cache
@@ -73,3 +68,9 @@ You may need to add the packages in the virtual environment to PYTHONPATH with
 export PYTHONPATH="/projappl/$PROJECT_FOLDER/$USER/$PROGRAM/.venv/lib/python3.10/site-packages/"
 ```
 ### Singularity containers
+In some environments, tools like PyTorch are run within a Singularity container. Common commands such as `torchrun` are often wrapped to work automatically. However, less frequently used commands, like `accelerate`, may not be wrapped and require a different approach to execute.
+
+To use the accelerate command within a Singularity container, you need to invoke it through the Singularity wrapper:
+```
+singularity_wrapper exec accelerate
+```
