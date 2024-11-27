@@ -53,6 +53,10 @@ To get an additional compute node terminal, you can open a login node and use:
 ```
 srun --jobid $JOBID --overlap --pty bash
 ```
+If you have only one job or you want the first in the list, you can use:
+```
+srun --jobid $(squeue -u $USER | awk 'NR==2 {print $1}') --overlap --pty bash
+```
 Using this new terminal, you can, for example, get info about the job running on that node, like the GPU usage with `rocm-smi`
 To cancel a job, use:
 ```
